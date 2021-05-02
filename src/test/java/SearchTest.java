@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SoftwareTestingSearch {
+public class SearchTest {
     private final String searchQuery = "Software Testing";
 
     @Test
