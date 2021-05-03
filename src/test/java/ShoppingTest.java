@@ -90,11 +90,10 @@ public class ShoppingTest {
 
             // ... to verify that the cart is empty.
             assert(cartStatusText.contains("Kundvagnen är tom"));
-        } catch (Exception e) {
-            // Take a screenshot of the failure and rethrow the exception.
-            Files.write(Path.of("./shopping-test.png"), driver.getScreenshotAs(OutputType.BYTES));
-            throw e;
         } finally {
+            // Take a screenshot of the test result.
+            Files.write(Path.of("./shopping-test.png"), driver.getScreenshotAs(OutputType.BYTES));
+
             // Clean up
             driver.close();
         }

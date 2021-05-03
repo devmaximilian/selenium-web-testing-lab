@@ -34,11 +34,10 @@ public class SearchTest {
             // Verify that the title reflects the search query
             String title = driver.getTitle();
             assert (title.contains(searchQuery));
-        } catch (Exception e) {
-            // Take a screenshot of the failure and rethrow the exception.
-            Files.write(Path.of("./search-test.png"), driver.getScreenshotAs(OutputType.BYTES));
-            throw e;
         } finally {
+            // Take a screenshot of the test result.
+            Files.write(Path.of("./shopping-test.png"), driver.getScreenshotAs(OutputType.BYTES));
+
             // Clean up
             driver.close();
         }
