@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +12,12 @@ public class ShoppingTest {
 
     @Test
     public void testShopping() throws Exception {
-        ChromeDriver driver = new ChromeDriver();
+        ChromeDriver driver = new ChromeDriver(
+                new ChromeOptions()
+                    .setHeadless(Environment.shouldRunHeadless())
+                    .addArguments("--no-sandbox")
+                    .addArguments("--disable-dev-shm-usage")
+        );
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         try {

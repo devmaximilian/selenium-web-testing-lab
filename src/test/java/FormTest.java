@@ -1,32 +1,41 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class FormTest {
 
     @Test
     public void testForm() {
-        ChromeDriver driver = new ChromeDriver();
-        driver.get("https://www.actitime.com");
+        ChromeDriver driver = new ChromeDriver(
+                new ChromeOptions()
+                        .setHeadless(Environment.shouldRunHeadless())
+                        .addArguments("--no-sandbox")
+                        .addArguments("--disable-dev-shm-usage")
+        );
 
-        // Navigate by pressing the ”Try Free” button
-        WebElement button = driver.findElementByLinkText("Try Free");
-        button.click();
+        try {
+            driver.get("https://www.actitime.com");
 
-        // Form elements
-        WebElement firstNameInput = driver.findElementByName("firstName");
-        WebElement lastNameInput = driver.findElementByName("lastName");
-        WebElement emailAddressInput = driver.findElementByName("emailAddress");
-        WebElement companyInput = driver.findElementByName("company");
+            // Navigate by pressing the ”Try Free” button
+            WebElement button = driver.findElementByLinkText("Try Free");
+            button.click();
 
-        // Enter test data
-        firstNameInput.sendKeys("Foo");
-        lastNameInput.sendKeys("Bar");
-        emailAddressInput.sendKeys("foo@bar.local");
-        companyInput.sendKeys("Foo Bar");
+            // Form elements
+            WebElement firstNameInput = driver.findElementByName("firstName");
+            WebElement lastNameInput = driver.findElementByName("lastName");
+            WebElement emailAddressInput = driver.findElementByName("emailAddress");
+            WebElement companyInput = driver.findElementByName("company");
 
-        // Clean up
-        driver.close();
+            // Enter test data
+            firstNameInput.sendKeys("Foo");
+            lastNameInput.sendKeys("Bar");
+            emailAddressInput.sendKeys("foo@bar.local");
+            companyInput.sendKeys("Foo Bar");
+        } finally {
+            // Clean up
+            driver.close();
+        }
     }
 
 }
