@@ -36,7 +36,7 @@ public class SearchTest {
             assert (title.contains(searchQuery));
         } finally {
             // Take a screenshot of the test result.
-            Files.write(Path.of("./shopping-test.png"), driver.getScreenshotAs(OutputType.BYTES));
+            Files.write(Path.of("./search-test.png"), driver.getScreenshotAs(OutputType.BYTES));
 
             // Clean up
             driver.close();
