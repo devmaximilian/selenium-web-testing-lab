@@ -1,6 +1,6 @@
 # Selenium Web Testing Lab
 
-Selenium Web Testing Lab
+[![Java CI with Maven](https://github.com/devmaximilian/selenium-web-testing-lab/actions/workflows/maven.yml/badge.svg)](https://github.com/devmaximilian/selenium-web-testing-lab/actions/workflows/maven.yml)
 
 ### Prerequisites
 
