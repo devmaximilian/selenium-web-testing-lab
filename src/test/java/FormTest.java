@@ -1,8 +1,12 @@
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.pagefactory.ByChained;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormTest {
 
@@ -15,9 +19,15 @@ public class FormTest {
                         .addArguments("--disable-dev-shm-usage")
         );
         driver.manage().window().setSize(new Dimension(800, 600));
+        WebDriverWait wait = new WebDriverWait(driver, 30);
 
         try {
             driver.get("https://www.actitime.com");
+
+            // Wait for the navigation bar to load.
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.linkText("Try Free")
+            ));
 
             // Navigate by pressing the ”Try Free” button
             WebElement button = driver.findElementByLinkText("Try Free");
