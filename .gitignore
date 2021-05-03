@@ -2,3 +2,4 @@
 target/
 selenium/
 selenium-web-testing-lab.iml
+**/*.png

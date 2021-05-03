@@ -27,3 +27,8 @@ jobs:
       run: |
         export HEADLESS=true
         mvn -B package --file pom.xml
+    - name: Archive test screenshots
+      uses: actions/upload-artifact@v2
+      with:
+        name: screenshots
+        path: **/*.png

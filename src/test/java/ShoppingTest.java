@@ -1,12 +1,16 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ShoppingTest {
     private final String searchQuery = "praktisk mjukvarutestning";
@@ -19,7 +23,7 @@ public class ShoppingTest {
                     .addArguments("--no-sandbox")
                     .addArguments("--disable-dev-shm-usage")
         );
-        driver.manage().window().setSize(new Dimension(800, 600));
+        driver.manage().window().setSize(new Dimension(1200, 800));
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         try {
@@ -86,6 +90,10 @@ public class ShoppingTest {
 
             // ... to verify that the cart is empty.
             assert(cartStatusText.contains("Kundvagnen är tom"));
+        } catch (Exception e) {
+            // Take a screenshot of the failure and rethrow the exception.
+            Files.write(Path.of("./shopping-test.png"), driver.getScreenshotAs(OutputType.BYTES));
+            throw e;
         } finally {
             // Clean up
             driver.close();
