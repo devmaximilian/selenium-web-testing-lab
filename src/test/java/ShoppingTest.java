@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,6 +19,7 @@ public class ShoppingTest {
                     .addArguments("--no-sandbox")
                     .addArguments("--disable-dev-shm-usage")
         );
+        driver.manage().window().setSize(new Dimension(800, 600));
         WebDriverWait wait = new WebDriverWait(driver, 30);
 
         try {
